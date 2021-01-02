@@ -1,0 +1,12 @@
+
+.submit-container {
+  display: flex;
+}
+
+.submit-container button {
+  margin-left: auto;
+}
+
+.container {
+  margin: var(--content-spacing);
+}

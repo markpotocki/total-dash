@@ -1,0 +1,67 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$total-dashboard-primary: mat-palette($mat-deep-purple, A400, A100, A700);
+$total-dashboard-accent: mat-palette($mat-grey, 700);
+
+// The warn palette is optional (defaults to red).
+$total-dashboard-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$total-dashboard-theme: mat-light-theme((
+  color: (
+    primary: $total-dashboard-primary,
+    accent: $total-dashboard-accent,
+    warn: $total-dashboard-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($total-dashboard-theme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-grey, 900);
+$dark-accent:  mat-palette($mat-deep-purple, A400, A100, A700);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+    warn: $dark-warn,
+  )
+));
+
+// Theme: Winter Paradise
+$winter-paradise-primary: mat-palette($mat-cyan, 50);
+$winter-paradise-accent: mat-palette($mat-blue-gray, 50);
+$winter-paradise-warn: mat-palette($mat-red);
+$winter-paradise-theme: mat-light-theme((
+  color: (
+    primary: $winter-paradise-primary,
+    accent: $winter-paradise-accent,
+    warn: $winter-paradise-warn
+  )
+));
+
+.dark-theme {
+  @include angular-material-color($dark-theme);
+}
+
+.winter-paradise-theme {
+  @include angular-material-color($winter-paradise-theme);
+}
+

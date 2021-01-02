@@ -1,0 +1,21 @@
+
+mat-sidenav {
+  width: 200px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.link-active {
+  font-weight: bolder;
+}
+
+.content {
+  margin: 8px;
+}
+
+.navbar-logo {
+  height: 40px;
+  margin-right: 4px;
+}

@@ -1,0 +1,18 @@
+
+.avatar {
+  display: flex;
+  align-content: center;
+  border-radius: 50%;
+}
+
+.avatar-info {
+  vertical-align: center;
+}
+
+.avatar-img {
+  height: 40px;
+  width: 40px;
+  margin-left: 8px;
+  border: solid white 1px;
+  border-radius: inherit;
+}

@@ -1,0 +1,30 @@
+
+.dashboard-deck {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: var(--content-spacing);
+}
+
+.dashboard-card {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.full-length {
+  width: 100%;
+}
+
+/* desktop overrides */
+@media only screen and (min-width: 600px) {
+  .dashboard-deck {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .desktop-third-length {
+    width: 33%;
+  }
+}
