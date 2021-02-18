@@ -5,13 +5,14 @@ import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
-    declarations: [UserAvatarComponent],
-    exports: [
-        UserAvatarComponent
-    ],
-    imports: [
-        CommonModule,
-        MatBadgeModule
-    ]
+  declarations: [UserAvatarComponent],
+  exports: [
+    UserAvatarComponent
+  ],
+  imports: [
+    CommonModule,
+    MatBadgeModule
+  ]
 })
-export class UserAvatarModule { }
+export class UserAvatarModule {
+}

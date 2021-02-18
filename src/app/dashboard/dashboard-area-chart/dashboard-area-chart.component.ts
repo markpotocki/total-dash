@@ -25,7 +25,8 @@ export class DashboardAreaChartComponent implements OnInit {
     domain: ['#39b7cd', '#f44336']
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

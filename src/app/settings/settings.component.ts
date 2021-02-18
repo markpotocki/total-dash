@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppSettings, THEMES} from './types/AppSettings';
-import {SettingsService} from '../settings.service';
+import {SettingsService} from '../services/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +12,8 @@ export class SettingsComponent implements OnInit {
   settings: AppSettings;
   themes = THEMES;
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService) {
+  }
 
   ngOnInit(): void {
     this.settings = this.settingsService.settings;

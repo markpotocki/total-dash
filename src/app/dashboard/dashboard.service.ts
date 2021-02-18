@@ -10,13 +10,13 @@ export class DashboardService {
     {
       name: 'Requests',
       series: [
-        { name: new Date(), value: 0 }
+        {name: new Date(), value: 0}
       ]
     },
     {
       name: 'Errors',
       series: [
-        { name: new Date(), value: 0 }
+        {name: new Date(), value: 0}
       ]
     }
   ];
@@ -25,7 +25,7 @@ export class DashboardService {
   private dataSubject = new BehaviorSubject(this.graph1ExampleData);
 
   constructor() {
-    setInterval( () => this.generateRandomData(), 1000);
+    setInterval(() => this.generateRandomData(), 1000);
   }
 
   get data$(): Observable<any> {
@@ -33,7 +33,7 @@ export class DashboardService {
   }
 
   private generateRandomData(): void {
-    const newVal = this.currentValue + (0.7 - Math.random()) * (this.currentValue  / 10);
+    const newVal = this.currentValue + (0.7 - Math.random()) * (this.currentValue / 10);
     const currentVal = this.dataSubject.getValue().concat();
     const timeStamp = new Date();
     // for our dummy good data

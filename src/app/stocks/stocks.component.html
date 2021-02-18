@@ -1,28 +1,34 @@
-
 <div class="container">
 
-  <mat-form-field color="accent" appearance="fill" color="primary" class="search-field">
-    <mat-label>Search</mat-label>
-    <mat-icon matPrefix>search</mat-icon>
-    <input [formControl]="formControl" matInput #stockSymbolInput placeholder="Enter stock symbol" (keyup.enter)="getStock(stockSymbolInput.value)">
-    <!--<mat-autocomplete>
-      <mat-option *ngFor="let option of getAutoComplete(stockSymbolInput.value) | async">
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete>-->
-  </mat-form-field>
-
-  <div class="card-deck">
-    <ng-container>
-      <app-stock></app-stock>
+  <div class="stock-quote-card-deck">
+    <ng-container *ngIf="favoriteStocks">
+      <div *ngFor="let stock of favoriteStocks" class="stock-quote-card">
+        <app-stock-quote-card [symbol]="stock"></app-stock-quote-card>
+      </div>
     </ng-container>
   </div>
 
+  <!-- Search field box -- to be used on small card or repositioned here
+  <mat-form-field color="accent" appearance="fill" color="primary" class="search-field">
+    <mat-label>Search</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input [formControl]="formControl" matInput #stockSymbolInput placeholder="Enter stock symbol"
+           (keyup.enter)="getStock(stockSymbolInput.value)">
+  </mat-form-field>
+  -->
+
   <div class="card-deck">
-    <div *ngIf="selectedStockSymbol" class="third">
-      <app-company-information [symbol]="selectedStockSymbol"></app-company-information>
-    </div>
+    <ng-container>
+      <app-stock [symbol]="favoriteStocks[0]"></app-stock>
+    </ng-container>
   </div>
+
+  <!-- transpose to full stock info page
+  <div class="card-deck">
+    <div class="third">
+      <app-company-information></app-company-information>
+    </div>
+  </div> -->
 </div>
 
 

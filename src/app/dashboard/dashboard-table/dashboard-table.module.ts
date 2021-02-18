@@ -6,14 +6,15 @@ import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
-    declarations: [DashboardTableComponent],
-    exports: [
-        DashboardTableComponent
-    ],
+  declarations: [DashboardTableComponent],
+  exports: [
+    DashboardTableComponent
+  ],
   imports: [
     CommonModule,
     MatTableModule,
     MatIconModule
   ]
 })
-export class DashboardTableModule { }
+export class DashboardTableModule {
+}

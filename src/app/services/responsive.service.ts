@@ -13,11 +13,11 @@ export class ResponsiveService implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
   }
 
-  ngOnDestroy(): void {
-  }
-
   get isMobile$(): Observable<boolean> {
     return of(this.mobileQuery.matches);
+  }
+
+  ngOnDestroy(): void {
   }
 
 }

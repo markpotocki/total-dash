@@ -13,19 +13,19 @@ export class DashboardNumberChartComponent implements OnInit {
   cardColor = 'white';
 
   data = [
-    { name: 'Running', value: 14302 },
-    { name: 'Down', value: 7 },
-    { name: 'Cost', value: 76483 },
-    { name: 'Monitors', value: 42 },
-    { name: 'Peers', value: 243034 },
-    { name: 'Warnings', value: 56 }
+    {name: 'Running', value: 14302},
+    {name: 'Down', value: 7},
+    {name: 'Cost', value: 76483},
+    {name: 'Monitors', value: 42},
+    {name: 'Peers', value: 243034},
+    {name: 'Warnings', value: 56}
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 
 
 }

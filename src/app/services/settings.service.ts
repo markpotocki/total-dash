@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {AppSettings} from './settings/types/AppSettings';
+import {AppSettings} from '../settings/types/AppSettings';
 
 const STORAGE_KEY = 'settings-total-dash';
 
@@ -12,6 +12,7 @@ export class SettingsService {
 
   // settings config object
   private appSettings: BehaviorSubject<AppSettings>;
+
   // this class will hold all our config data (we'll load from environment) and allow app editing
 
   constructor() {
@@ -23,10 +24,6 @@ export class SettingsService {
       // load the stored settings
       this.appSettings = new BehaviorSubject<AppSettings>(this.decodeSettings(storageLoadedSettings));
     }
-  }
-
-  getSettings$(): Observable<AppSettings> {
-    return this.appSettings.asObservable();
   }
 
   get settings(): AppSettings {
@@ -43,8 +40,12 @@ export class SettingsService {
 
   get stockDataAPIKey$(): Observable<string> {
     return this.appSettings.pipe(
-      map( (settings: AppSettings) => settings.apiKey)
+      map((settings: AppSettings) => settings.apiKey)
     );
+  }
+
+  getSettings$(): Observable<AppSettings> {
+    return this.appSettings.asObservable();
   }
 
   private encodeSettings(settings: AppSettings): string {

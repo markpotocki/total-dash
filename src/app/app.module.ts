@@ -11,6 +11,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {UserAvatarModule} from './user-avatar/user-avatar.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {HttpClientModule} from '@angular/common/http';
+import {FinanceApiModule} from './api/finance-api/finance-api.module';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,12 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatListModule,
     MatButtonModule,
     MatSlideToggleModule,
-    UserAvatarModule
+    UserAvatarModule,
+    FinanceApiModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

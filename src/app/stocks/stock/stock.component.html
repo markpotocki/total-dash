@@ -1,19 +1,19 @@
-
 <div class="card full">
   <mat-card>
     <mat-card-title>{{ symbol | uppercase }}</mat-card-title>
     <mat-card-subtitle>Updated at {{ lastRefresh }}</mat-card-subtitle>
     <mat-card-content>
       <div class="options-group">
-        <div class="options-btn-group">
-          <button mat-flat-button [color]="type === 'intraday' ? 'primary' : 'basic'" (click)="getStocks(symbol, 'intraday')">Intraday</button>
-          <button mat-flat-button [color]="type === 'weekly' ? 'primary' : 'basic'" (click)="getStocks(symbol, 'weekly')">Weekly</button>
-          <button mat-flat-button [color]="type === 'monthly' ? 'primary' : 'basic'" (click)="getStocks(symbol, 'monthly')">Monthly</button>
-        </div>
+        <mat-button-toggle-group [(ngModel)]="type" aria-label="Time Interval" name="type">
+          <mat-button-toggle value="daily">Daily</mat-button-toggle>
+          <mat-button-toggle value="weekly">Weekly</mat-button-toggle>
+          <mat-button-toggle value="monthly">Monthly</mat-button-toggle>
+        </mat-button-toggle-group>
       </div>
       <div>
         <div class="stock-chart">
-          <app-stocks-area-chart [timeline]="true" [data]="stocks | async"></app-stocks-area-chart>
+          <app-stocks-area-chart [data]="(stocks | async) | financeApiToNgxGraph"
+                                 [timeline]="true"></app-stocks-area-chart>
         </div>
       </div>
     </mat-card-content>

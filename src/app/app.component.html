@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="sidenav.toggle()" class="sidenav-toggler">
+  <button (click)="sidenav.toggle()" class="sidenav-toggler" mat-icon-button>
     <mat-icon>{{ sideNavOpen ? 'menu_open' : 'menu' }}</mat-icon>
   </button>
   <span>TotalDash</span>
@@ -7,10 +7,12 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav (closed)="sideNavOpen = false" (opened)="sideNavOpen = true" #sidenav [fixedInViewport]="isMobile$ | async" [mode]="(isMobile$ | async) ? 'over' : 'side'" [opened]="!(isMobile$ | async)" [fixedTopGap]="(isMobile$ | async) ? 0 : 56">
+  <mat-sidenav #sidenav (closed)="sideNavOpen = false" (opened)="sideNavOpen = true"
+               [fixedInViewport]="isMobile$ | async" [fixedTopGap]="(isMobile$ | async) ? 0 : 56"
+               [mode]="(isMobile$ | async) ? 'over' : 'side'" [opened]="!(isMobile$ | async)">
 
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="link-active" [href]="navItem.url" *ngFor="let navItem of navItems">
+      <a *ngFor="let navItem of navItems" [href]="navItem.url" mat-list-item routerLinkActive="link-active">
         <mat-icon matListIcon>{{ navItem.icon }}</mat-icon>
         {{ navItem.text }}
       </a>
@@ -19,7 +21,8 @@
     <span class="spacer"></span>
 
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="link-active" [routerLink]="navItem.url" [href]="navItem.url" *ngFor="let navItem of bottomNavItems">
+      <a *ngFor="let navItem of bottomNavItems" [href]="navItem.url" [routerLink]="navItem.url" mat-list-item
+         routerLinkActive="link-active">
         <mat-icon matListIcon>{{ navItem.icon }}</mat-icon>
         {{ navItem.text }}
       </a>

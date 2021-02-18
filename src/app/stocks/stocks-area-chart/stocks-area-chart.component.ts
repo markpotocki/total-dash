@@ -26,7 +26,8 @@ export class StocksAreaChartComponent implements OnInit {
     domain: ['red', 'yellow', 'blue', 'green', 'purple', 'orange']
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     console.log(this.data);

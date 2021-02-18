@@ -8,9 +8,9 @@ describe('CompanyAutoCompleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompanyAutoCompleteComponent ]
+      declarations: [CompanyAutoCompleteComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

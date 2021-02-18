@@ -15,21 +15,36 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {CompanyInformationComponent} from './company-information/company-information.component';
 import {CompanyAutoCompleteComponent} from './company-auto-complete/company-auto-complete.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatOptionModule} from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {FinanceApiToNgxGraphPipe} from './pipes/finance-api-to-ngx-graph.pipe';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {StockQuoteCardComponent} from './stock-quote-card/stock-quote-card.component';
+import {StockSearchResultsComponent} from './stock-search-results/stock-search-results.component';
+import {MatTableModule} from '@angular/material/table';
 
 const ROUTES: Routes = [
   {
     path: '',
     component: StocksComponent,
     children: [
-      { path: ':symbol', component: StockComponent }
-    ]},
+      {path: ':symbol', component: StockComponent}
+    ]
+  },
 ];
 
 @NgModule({
-  declarations: [StocksComponent, StocksAreaChartComponent, StockComponent, CompanyInformationComponent, CompanyAutoCompleteComponent],
+  declarations: [
+    StocksComponent,
+    StocksAreaChartComponent,
+    StockComponent,
+    CompanyInformationComponent,
+    CompanyAutoCompleteComponent,
+    FinanceApiToNgxGraphPipe,
+    StockQuoteCardComponent,
+    StockSearchResultsComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
@@ -43,10 +58,14 @@ const ROUTES: Routes = [
     MatButtonModule,
     ReactiveFormsModule,
     MatOptionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatButtonToggleModule,
+    FormsModule,
+    MatTableModule
   ],
   providers: [
     StocksService
   ]
 })
-export class StocksModule { }
+export class StocksModule {
+}

@@ -1,18 +1,18 @@
-
 <div class="container">
   <mat-card>
     <mat-card-title>Settings</mat-card-title>
     <mat-card-content>
       <div class="settings-form">
         <form #settingsForm="ngForm" (ngSubmit)="submit()">
-          <h3>API Settings</h3>
+          <h3>Global Settings</h3>
+
+          <!-- Finance API key -->
           <mat-form-field>
             <mat-label>Stock API Key</mat-label>
-            <input matInput placeholder="Enter API key" name="apiKey" [(ngModel)]="settings.apiKey"/>
+            <input [(ngModel)]="settings.apiKey" matInput name="apiKey" placeholder="Enter API key"/>
           </mat-form-field>
 
-          <!-- Display Settings -->
-          <h3>Display Settings</h3>
+          <!-- Theme Settings -->
           <mat-form-field>
             <mat-label>Theme</mat-label>
             <mat-select [(ngModel)]="settings.theme" name="theme">
@@ -20,8 +20,11 @@
             </mat-select>
           </mat-form-field>
 
+          <!-- Favorite stock symbols [show up in stocks top dashboard limit of 4] -->
+
+
           <div class="submit-container">
-            <button mat-stroked-button color="accent" [disabled]="!settingsForm.form.valid">
+            <button [disabled]="!settingsForm.form.valid" color="accent" mat-stroked-button>
               <mat-icon>save</mat-icon>
               Save
             </button>

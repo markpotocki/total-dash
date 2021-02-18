@@ -14,11 +14,11 @@ export class DashboardComponent implements OnInit {
   constructor(private dashboardService: DashboardService) {
   }
 
-  ngOnInit(): void {
-  }
-
   get data$(): Observable<any> {
     return this.dashboardService.data$;
+  }
+
+  ngOnInit(): void {
   }
 
 

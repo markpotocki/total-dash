@@ -13,13 +13,30 @@ mat-toolbar {
   padding-bottom: 8px;
 }
 
+.card-deck {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.stock-quote-card-deck {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.stock-quote-card {
+  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 49%;
+}
+
 @media only screen and (min-width: 600px) {
   .third {
     width: 45%;
   }
-}
 
-.card-deck {
-  margin-top: 16px;
-  margin-bottom: 16px;
+  .stock-quote-card {
+    width: 24%;
+  }
+
 }

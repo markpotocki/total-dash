@@ -30,4 +30,5 @@ const routes: Routes = [
     MatSelectModule
   ]
 })
-export class SettingsModule { }
+export class SettingsModule {
+}

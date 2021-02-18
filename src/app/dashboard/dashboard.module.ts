@@ -11,20 +11,21 @@ import {DashboardTableModule} from './dashboard-table/dashboard-table.module';
 import {DashboardNumberChartComponent} from './dashboard-number-chart/dashboard-number-chart.component';
 
 const ROUTES: Routes = [
-  { path: '', component: DashboardComponent }
+  {path: '', component: DashboardComponent}
 ];
 
 @NgModule({
   declarations: [DashboardComponent, DashboardAreaChartComponent, DashboardNumberChartComponent],
-    imports: [
-        RouterModule.forChild(ROUTES),
-        CommonModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatCardModule,
-        AreaChartModule,
-        DashboardTableModule,
-        NumberCardModule
-    ]
+  imports: [
+    RouterModule.forChild(ROUTES),
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    AreaChartModule,
+    DashboardTableModule,
+    NumberCardModule
+  ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}

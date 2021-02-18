@@ -1,7 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {ResponsiveService} from './responsive.service';
+import {ResponsiveService} from './services/responsive.service';
 import {Observable} from 'rxjs';
-import {SettingsService} from './settings.service';
+import {SettingsService} from './services/settings.service';
 import {AppSettings} from './settings/types/AppSettings';
 
 @Component({
@@ -12,10 +12,7 @@ import {AppSettings} from './settings/types/AppSettings';
 export class AppComponent implements OnInit {
   title = 'total-dashboard';
   sideNavOpen: boolean;
-  private settings: AppSettings;
   @HostBinding('classList') theme;
-
-
   navItems = [
     {
       text: 'Dashboard',
@@ -28,7 +25,6 @@ export class AppComponent implements OnInit {
       url: '/stocks'
     }
   ];
-
   bottomNavItems = [
     {
       text: 'Settings',
@@ -36,8 +32,13 @@ export class AppComponent implements OnInit {
       url: '/settings'
     }
   ];
+  private settings: AppSettings;
 
   constructor(private responsiveService: ResponsiveService, private settingsService: SettingsService) {
+  }
+
+  get isMobile$(): Observable<boolean> {
+    return this.responsiveService.isMobile$;
   }
 
   ngOnInit(): void {
@@ -47,10 +48,6 @@ export class AppComponent implements OnInit {
         this.theme = settings.theme;
       }
     );
-  }
-
-  get isMobile$(): Observable<boolean> {
-    return this.responsiveService.isMobile$;
   }
 
 }

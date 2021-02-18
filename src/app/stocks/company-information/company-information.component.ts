@@ -1,7 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {StocksService} from '../stocks.service';
-import {Subscription} from 'rxjs';
-import {CompanyInformation} from '../types/company-information';
+import {Observable, Subscription} from 'rxjs';
+import {CompanyInformation} from '../../api/finance-api/types/company-information';
+import {ActivatedRoute} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-company-information',
@@ -15,23 +17,26 @@ export class CompanyInformationComponent implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
 
-  constructor(private stocksService: StocksService) { }
+  constructor(private stocksService: StocksService, private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-    this.getCompanyInformation();
-  }
-
-  ngOnDestroy(): void {
-    this.subs.forEach( sub => sub.unsubscribe());
-  }
-
-  getCompanyInformation(): void {
-    const sub = this.stocksService.getCompanyInformation(this.symbol).subscribe(
-      info => this.companyInformation = info,
+    const sub = this.route.queryParamMap.pipe(
+      switchMap(params => this.getCompanyInformation(params.get('symbol')))
+    ).subscribe(
+      companyInformation => this.companyInformation = companyInformation,
       err => console.log(err)
     );
 
     this.subs.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe());
+  }
+
+  getCompanyInformation(symbol: string): Observable<CompanyInformation> {
+    return this.stocksService.getCompanyInformation(symbol);
   }
 
 }
