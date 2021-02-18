@@ -1,5 +1,4 @@
 import {StockData} from './stock-data';
-import {MonthlyStockData} from './monthly-stock-data';
 
 export interface WeeklyStockData {
   'Meta Data': MetaData;

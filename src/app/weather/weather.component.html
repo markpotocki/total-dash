@@ -1,7 +1,27 @@
-
 <div *ngIf="loading">
   Loading...
 </div>
-<pre *ngIf="!loading">
-  {{ weather }}
-</pre>
+<div *ngIf="!loading">
+  <!-- no content or error -->
+  <ng-container *ngIf="!weather">
+    No weather to display.
+  </ng-container>
+
+  <!-- has content -->
+  <ng-container *ngIf="weather">
+    <h2>{{ location }}</h2>
+    <app-weather-forecast [forecast]="weather.periods[0]"></app-weather-forecast>
+    <h3>Extended Forecast</h3>
+    <div *ngFor="let period of weather.periods.slice(1)">
+      <mat-list>
+        <mat-list-item>
+          <img [src]="period.icon" class="forecast-icon"/>
+          <span class="forecast-name">{{ period.name }}</span>
+          <span class="spacer"></span>
+          <span>{{ period.temperature + ' &deg;' + period.temperatureUnit }}</span>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </ng-container>
+
+</div>

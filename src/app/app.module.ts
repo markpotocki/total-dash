@@ -13,6 +13,7 @@ import {UserAvatarModule} from './user-avatar/user-avatar.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {HttpClientModule} from '@angular/common/http';
 import {FinanceApiModule} from './api/finance-api/finance-api.module';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {FinanceApiModule} from './api/finance-api/finance-api.module';
     MatSlideToggleModule,
     UserAvatarModule,
     FinanceApiModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

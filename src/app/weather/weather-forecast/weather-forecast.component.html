@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-content>
+    <div class="icon">
+      <img [src]="forecast.icon"/>
+    </div>
+    <div class="temperature">
+      <strong>{{ forecast.temperature }} {{ '&deg;' + forecast.temperatureUnit }}</strong>
+    </div>
+    <div class="short-description">
+      {{ forecast.shortForecast }}
+    </div>
+
+    <div class="full-description">
+      {{ forecast.detailedForecast }}
+    </div>
+  </mat-card-content>
+</mat-card>

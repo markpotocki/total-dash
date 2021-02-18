@@ -1,0 +1,14 @@
+.spacer {
+  flex-grow: 1;
+}
+
+.forecast-icon {
+  width: auto;
+  height: 50%;
+  border-radius: 5%;
+}
+
+.forecast-name {
+  font-weight: bold;
+  margin-left: 8px;
+}

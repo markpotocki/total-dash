@@ -1,10 +1,14 @@
-
-
 export class GridPointCoordinates {
   properties: {
     gridId: string;
     gridX: number;
     gridY: number;
+    relativeLocation: {
+      properties: {
+        city: string;
+        state: string;
+      }
+    };
   };
 }
 
@@ -22,7 +26,7 @@ export class ForecastProperties {
   periods: ForecastPeriod[];
 }
 
-interface ForecastPeriod {
+export class ForecastPeriod {
   number: number;
   name: string;
   startTime: Date;
