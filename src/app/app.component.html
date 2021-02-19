@@ -4,7 +4,7 @@
   </button>
   <span>TotalDash</span>
   <span class="spacer"></span>
-  <span class="weather">{{location + ' ' + temperature}}</span>
+  <span class="weather"><ng-container *ngIf="!(isMobile$ | async)">{{location}}</ng-container>{{temperature}}</span>
 </mat-toolbar>
 
 <mat-sidenav-container fullscreen>

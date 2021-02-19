@@ -2,10 +2,25 @@ mat-card-content {
   text-align: center;
 }
 
-.icon img {
-  border-radius: 5px;
+mat-card-content div {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.location {
+  font-size: 1.1rem;
 }
 
 .temperature {
+  display: flex;
+  flex-direction: row;
   font-size: 1.5rem;
+}
+
+.wind-speed {
+  font-size: 0.8rem;
+}
+
+.weather-logo img {
+  border-radius: 25px;
 }

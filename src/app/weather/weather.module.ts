@@ -6,13 +6,14 @@ import {WeatherForecastComponent} from './weather-forecast/weather-forecast.comp
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import { WindDirectionToIconPipe } from './wind-direction-to-icon.pipe';
 
 const ROUTES: Routes = [
   {path: '', component: WeatherComponent}
 ];
 
 @NgModule({
-  declarations: [WeatherComponent, WeatherForecastComponent],
+  declarations: [WeatherComponent, WeatherForecastComponent, WindDirectionToIconPipe],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),

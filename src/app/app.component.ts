@@ -75,7 +75,7 @@ export class AppComponent implements OnInit, OnDestroy {
       map(weatherReport => weatherReport.periods),
       map(weatherPeriods => weatherPeriods[0])
     ).subscribe(
-      currentWeather => this.temperature = currentWeather.temperature + ' ' + currentWeather.temperatureUnit
+      currentWeather => this.temperature = currentWeather.temperature + ' &#176;' + currentWeather.temperatureUnit
     );
   }
 

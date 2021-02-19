@@ -10,6 +10,7 @@ type WeatherForecastComponentSize = 'small' | 'medium' | 'large';
 })
 export class WeatherForecastComponent implements OnInit {
 
+  @Input() location: string;
   @Input() forecast: ForecastPeriod;
 
   constructor() {

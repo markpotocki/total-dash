@@ -1,10 +1,16 @@
 <mat-card>
   <mat-card-content>
-    <div class="icon">
-      <img [src]="forecast.icon"/>
+    <div class="weather-logo">
+      <img [src]="forecast.icon" />
     </div>
     <div class="temperature">
       <strong>{{ forecast.temperature }} {{ '&deg;' + forecast.temperatureUnit }}</strong>
+      <div class="wind-speed">
+        <mat-icon>{{ forecast.windDirection | windDirectionToIcon }}</mat-icon>{{ forecast.windSpeed }}
+      </div>
+    </div>
+    <div class="location">
+      {{ location }}
     </div>
     <div class="short-description">
       {{ forecast.shortForecast }}
@@ -13,5 +19,7 @@
     <div class="full-description">
       {{ forecast.detailedForecast }}
     </div>
+
   </mat-card-content>
+
 </mat-card>

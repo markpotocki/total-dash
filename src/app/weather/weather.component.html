@@ -9,8 +9,7 @@
 
   <!-- has content -->
   <ng-container *ngIf="weather">
-    <h2>{{ location }}</h2>
-    <app-weather-forecast [forecast]="weather.periods[0]"></app-weather-forecast>
+    <app-weather-forecast [location]="location" [forecast]="weather.periods[0]"></app-weather-forecast>
     <h3>Extended Forecast</h3>
     <div *ngFor="let period of weather.periods.slice(1)">
       <mat-list>
