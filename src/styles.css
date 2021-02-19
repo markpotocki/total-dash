@@ -13,3 +13,7 @@ body {
 :root {
   --content-spacing: 8px;
 }
+
+spacer {
+  flex-grow: 1;
+}
