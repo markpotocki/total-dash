@@ -1,8 +1,8 @@
-mat-card-content {
+.content {
   text-align: center;
 }
 
-mat-card-content div {
+.content div {
   margin-top: 8px;
   margin-bottom: 8px;
 }
@@ -12,13 +12,7 @@ mat-card-content div {
 }
 
 .temperature {
-  display: flex;
-  flex-direction: row;
   font-size: 1.5rem;
-}
-
-.wind-speed {
-  font-size: 0.8rem;
 }
 
 .weather-logo img {

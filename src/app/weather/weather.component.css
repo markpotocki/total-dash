@@ -1,3 +1,12 @@
+.container {
+  margin: 8px;
+}
+
+.grp-1 {
+  display:flex;
+  flex-wrap: wrap;
+}
+
 .spacer {
   flex-grow: 1;
 }
@@ -11,4 +20,32 @@
 .forecast-name {
   font-weight: bold;
   margin-left: 8px;
+}
+
+.grp {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grp-2 mat-card {
+  width: 250px;
+}
+
+.grp-1-sect-1 {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.grp-1-sect-2 {
+  flex: 1 0;
+  justify-content: space-between;
+}
+
+.forecast-card {
+  flex: 2 0;
+  max-width: 350px;
+}
+
+mat-card {
+  margin: 8px;
 }

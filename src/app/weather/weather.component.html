@@ -1,26 +1,80 @@
-<div *ngIf="loading">
-  Loading...
-</div>
-<div *ngIf="!loading">
-  <!-- no content or error -->
-  <ng-container *ngIf="!weather">
-    No weather to display.
-  </ng-container>
+<div class="container">
 
-  <!-- has content -->
-  <ng-container *ngIf="weather">
-    <app-weather-forecast [location]="location" [forecast]="weather.periods[0]"></app-weather-forecast>
-    <h3>Extended Forecast</h3>
-    <div *ngFor="let period of weather.periods.slice(1)">
-      <mat-list>
-        <mat-list-item>
-          <img [src]="period.icon" class="forecast-icon"/>
-          <span class="forecast-name">{{ period.name }}</span>
-          <span class="spacer"></span>
-          <span>{{ period.temperature + ' &deg;' + period.temperatureUnit }}</span>
-        </mat-list-item>
-      </mat-list>
+  <!-- div to hold group #1: forecast, next forecast, windspeed -->
+  <div class="grp">
+    <div class="grp-1">
+      <!-- no content or error -->
+      <ng-container *ngIf="!weather">
+        No weather to display.
+      </ng-container>
+
+      <!-- has content -->
+      <div class="grp-1-sect-1">
+        <div class="forecast-card">
+          <mat-card>
+            <mat-card-content>
+              <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+              <app-weather-forecast
+                *ngIf="!loading"
+                [title]="location"
+                [subtitle]="weather?.periods[0].shortForecast"
+                [details]="weather?.periods[0].detailedForecast">
+                <visual><img [src]="weather?.periods[0].icon" /></visual>
+                <indicator>
+                  <strong>{{ weather?.periods[0].temperature }} {{ '&deg;' + weather?.periods[0].temperatureUnit }}</strong>
+                </indicator>
+              </app-weather-forecast>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+
+        <div class="grp-1-sect-2">
+          <!-- wind direction card -->
+          <mat-card>
+            <mat-card-content>
+              <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+              <app-weather-forecast
+                *ngIf="!loading"
+                [title]="weather?.periods[0].windDirection"
+                [subtitle]="weather?.periods[0].windSpeed">
+                <indicator>
+                  <mat-icon>{{ weather?.periods[0].windDirection | windDirectionToIcon }}</mat-icon>
+                </indicator>
+              </app-weather-forecast>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- next forecast -->
+          <mat-card>
+            <mat-card-content>
+              <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+              <app-weather-forecast
+                *ngIf="!loading"
+                [title]="weather?.periods[1].name"
+                [subtitle]="weather?.periods[1].shortForecast">
+                <indicator>{{ weather?.periods[1].temperature + ' &deg;' + weather?.periods[1].temperatureUnit }}</indicator>
+              </app-weather-forecast>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+
+  </div>
+
+
+  <!-- Group 2: for headlines -->
+    <div class="grp-2">
+      <ng-container *ngIf="!loading">
+        <mat-card>
+          <mat-card-title>Extended Forecast</mat-card-title>
+          <mat-card-content>
+            <app-extended-forecast [forecasts]="weather?.periods.slice(2)"></app-extended-forecast>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
     </div>
-  </ng-container>
 
+  </div>
 </div>

@@ -12,6 +12,11 @@ export class WeatherForecastComponent implements OnInit {
 
   @Input() location: string;
   @Input() forecast: ForecastPeriod;
+  @Input() compact = false;
+
+  @Input() title: string;
+  @Input() subtitle: string;
+  @Input() details: string;
 
   constructor() {
   }

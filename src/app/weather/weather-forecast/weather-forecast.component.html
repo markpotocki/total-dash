@@ -1,25 +1,19 @@
-<mat-card>
-  <mat-card-content>
-    <div class="weather-logo">
-      <img [src]="forecast.icon" />
+<div class="content">
+    <div class="weather-logo" *ngIf="!compact">
+      <ng-content select="visual"></ng-content>
+    </div>
+    <div class="location" *ngIf="title">
+      {{ title }}
     </div>
     <div class="temperature">
-      <strong>{{ forecast.temperature }} {{ '&deg;' + forecast.temperatureUnit }}</strong>
-      <div class="wind-speed">
-        <mat-icon>{{ forecast.windDirection | windDirectionToIcon }}</mat-icon>{{ forecast.windSpeed }}
-      </div>
+      <ng-content select="indicator"></ng-content>
     </div>
-    <div class="location">
-      {{ location }}
-    </div>
-    <div class="short-description">
-      {{ forecast.shortForecast }}
+    <div class="short-description" *ngIf="subtitle">
+      {{ subtitle }}
     </div>
 
-    <div class="full-description">
-      {{ forecast.detailedForecast }}
+    <div class="full-description" *ngIf="details">
+      {{ details }}
     </div>
 
-  </mat-card-content>
-
-</mat-card>
+</div>

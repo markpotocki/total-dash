@@ -31,6 +31,12 @@ export class WeatherComponent implements OnInit, OnDestroy {
     this._weatherSub.unsubscribe();
   }
 
+  nightOrDayBackground(isDaytime: boolean): string {
+    return isDaytime ?
+      'background: linear-gradient(to bottom, #00000c 80%,#150800 100%);' :
+      'background: linear-gradient(to bottom, #020111 85%,#191621 100%);';
+  }
+
   private getCurrentLocation(): void {
     this._weatherSub = this.geolocation$.pipe(
       take(1),
