@@ -1,16 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [LoadingSpinnerComponent],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   exports: [
-    CommonModule
+    CommonModule,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule {

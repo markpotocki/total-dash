@@ -14,6 +14,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {HttpClientModule} from '@angular/common/http';
 import {FinanceApiModule} from './api/finance-api/finance-api.module';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     UserAvatarModule,
     FinanceApiModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
