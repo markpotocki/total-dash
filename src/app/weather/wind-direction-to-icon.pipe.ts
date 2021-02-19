@@ -26,6 +26,10 @@ export class WindDirectionToIconPipe implements PipeTransform {
           return 'south_east';
         case 'WNW':
           return 'north_west';
+        case 'SSE':
+          return 'south_east';
+        case 'WSW':
+          return 'south_west';
       }
     }
     return value;
