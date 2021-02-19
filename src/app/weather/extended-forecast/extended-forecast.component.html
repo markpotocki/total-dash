@@ -1,0 +1,10 @@
+
+
+      <mat-list>
+        <mat-list-item *ngFor="let forecast of forecasts">
+          <img [src]="forecast.icon" class="forecast-icon">
+          <span class="forecast-name">{{ forecast.name }}</span>
+          <span class="spacer"></span>
+          <span>{{ forecast.temperature + ' &deg;' + forecast.temperatureUnit }}</span>
+        </mat-list-item>
+      </mat-list>
