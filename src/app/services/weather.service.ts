@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, ReplaySubject} from 'rxjs';
+import {interval, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, shareReplay, tap} from 'rxjs/operators';
+import {catchError, map, repeatWhen, retry, shareReplay} from 'rxjs/operators';
 import {ForecastProperties, GridPointCoordinates} from '../weather/types';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 const GRIDPOINT_ENDPOINT = 'https://api.weather.gov/points';
 const LATLONG_ENDPOINT = 'https://api.weather.gov/gridpoints';
+const FORECAST_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 Minutes
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,6 @@ export class WeatherService {
 
   private _gridSubject: Observable<GridPointCoordinates>;
   private _forecastSubject: Observable<ForecastProperties>;
-
-  private _gridPointCache = new Map<string, GridPointCoordinates>();
-  private i = 0;
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {
     console.log('init service ' + this);
@@ -43,13 +41,16 @@ export class WeatherService {
 
   private _fetchGrid(latitude: number, longitude: number): Observable<GridPointCoordinates> {
     const coordinateString = latitude + ',' + longitude;
-    return this.http.get<GridPointCoordinates>(`${GRIDPOINT_ENDPOINT}/${coordinateString}`);
+    return this.http.get<GridPointCoordinates>(`${GRIDPOINT_ENDPOINT}/${coordinateString}`).pipe(
+      catchError(err => this.handleError(err))
+    );
   }
 
   getWeatherReport(grid: GridPointCoordinates, forceReload?: boolean): Observable<ForecastProperties> {
     // cancel the http request once we get an answer
     if (!this._forecastSubject || forceReload) {
       this._forecastSubject = this._fetchWeatherReport(grid).pipe(
+        repeatWhen( () => interval(FORECAST_REFRESH_INTERVAL)),
         shareReplay(1)
       );
     }
@@ -61,12 +62,16 @@ export class WeatherService {
     return this.http.get<any>(
       `${LATLONG_ENDPOINT}/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`
     ).pipe(
-      map(gridPoint => gridPoint.properties)
+      map(gridPoint => gridPoint.properties),
+      retry(1),
+      catchError(err => this.handleError(err))
     );
   }
 
-  private handleError(message: string): Array<any> {
-    this.snackBar.open(message, 'Dismiss');
+  private handleError(message: any): Array<any> {
+    this.snackBar.open(JSON.stringify(message), 'Dismiss', {
+      panelClass: 'error'
+    });
     console.error(message);
     return [];
   }
