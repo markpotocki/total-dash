@@ -1,51 +1,33 @@
-.container {
+.content {
+  display: flex;
+  flex-wrap: wrap;
   margin: 8px;
 }
 
-.grp-1 {
-  display:flex;
-  flex-wrap: wrap;
-}
-
-.spacer {
-  flex-grow: 1;
-}
-
-.forecast-icon {
-  width: auto;
-  height: 50%;
-  border-radius: 5%;
-}
-
-.forecast-name {
-  font-weight: bold;
-  margin-left: 8px;
-}
-
-.grp {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.grp-2 mat-card {
-  width: 250px;
-}
-
-.grp-1-sect-1 {
-  display: flex;
-  margin-bottom: 16px;
-}
-
-.grp-1-sect-2 {
-  flex: 1 0;
-  justify-content: space-between;
-}
-
-.forecast-card {
-  flex: 2 0;
-  max-width: 350px;
-}
-
-mat-card {
+.content > * {
   margin: 8px;
+}
+
+.forecast {
+  flex: 4 0 350px;
+}
+
+.extra-info {
+  flex: 1 0 150px;
+}
+
+.extra-info > *:nth-child(2) {
+  margin-top: 8px;
+}
+
+.wind {
+  flex: 1 0 150px;
+}
+
+.next-forecast {
+  flex: 1 0 150px;
+}
+
+.extended-forecast {
+  flex: 2 0 250px;
 }
