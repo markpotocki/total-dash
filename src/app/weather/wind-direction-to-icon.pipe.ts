@@ -7,7 +7,7 @@ export class WindDirectionToIconPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     if (typeof value === 'string') {
-      switch (value) {
+      switch (value.length > 2 ? value.slice(1) : value) {
         case 'N':
           return 'north';
         case 'E':
@@ -24,12 +24,6 @@ export class WindDirectionToIconPipe implements PipeTransform {
           return 'south_west';
         case 'SE':
           return 'south_east';
-        case 'WNW':
-          return 'north_west';
-        case 'SSE':
-          return 'south_east';
-        case 'WSW':
-          return 'south_west';
       }
     }
     return value;
