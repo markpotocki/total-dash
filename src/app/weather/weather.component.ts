@@ -43,13 +43,18 @@ export class WeatherComponent implements OnInit, OnDestroy {
       switchMap(position => this.weatherService.getGrid(position.coords.latitude, position.coords.longitude)),
       tap(grid => console.log('props: ' + grid.properties.relativeLocation)),
       tap(grid => this.location = `${grid.properties.relativeLocation.properties.city}, ${grid.properties.relativeLocation.properties.state}`),
-      tap(grid => console.log('location is ' + this.location)),
+      tap(() => console.log('location is ' + this.location)),
       switchMap(grid => this.weatherService.getWeatherReport(grid)),
       // finalize(() => this.loading = false)
     ).subscribe(
-      weather => this.weather = weather,
-      err => console.log(err),
-      () => this.loading = false
+      weather => {
+        this.weather = weather;
+        this.loading = false;
+      },
+      err => {
+            console.log(err);
+            this.loading = false;
+            },
     );
   }
 
