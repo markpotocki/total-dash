@@ -12,7 +12,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {UserAvatarModule} from './user-avatar/user-avatar.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {HttpClientModule} from '@angular/common/http';
-import {FinanceApiModule} from './api/finance-api/finance-api.module';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SharedModule} from './shared/shared.module';
 
@@ -31,7 +30,6 @@ import {SharedModule} from './shared/shared.module';
     MatButtonModule,
     MatSlideToggleModule,
     UserAvatarModule,
-    FinanceApiModule,
     HttpClientModule,
     MatSnackBarModule,
     SharedModule

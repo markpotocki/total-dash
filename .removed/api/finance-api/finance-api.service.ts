@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SettingsService} from '../../services/settings.service';
+import {SettingsService} from '../../../src/app/services/settings.service';
 import {Observable} from 'rxjs';
 import {MonthlyStockData} from './types/monthly-stock-data';
 import {WeeklyStockData} from './types/weekly-stock-data';
