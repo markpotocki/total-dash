@@ -6,14 +6,8 @@
         <form #settingsForm="ngForm" (ngSubmit)="submit()">
           <h3>Global Settings</h3>
 
-          <!-- Finance API key -->
-          <mat-form-field>
-            <mat-label>Stock API Key</mat-label>
-            <input [(ngModel)]="settings.apiKey" matInput name="apiKey" placeholder="Enter API key"/>
-          </mat-form-field>
-
           <!-- Theme Settings -->
-          <mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>Theme</mat-label>
             <mat-select [(ngModel)]="settings.theme" name="theme">
               <mat-option *ngFor="let theme of themes" [value]="getClassFromTheme(theme)">{{ theme }}</mat-option>

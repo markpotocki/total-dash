@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExtendedForecastComponent } from './extended-forecast.component';
+import {ForecastPeriod} from '../types';
 
 describe('ExtendedForecastComponent', () => {
   let component: ExtendedForecastComponent;
@@ -21,5 +22,13 @@ describe('ExtendedForecastComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have startTime for forecast ID', () => {
+    const forecast = new ForecastPeriod();
+    const startTime = new Date();
+    forecast.startTime = startTime;
+    const result = component.getForecastId(0, forecast);
+    expect(result).toEqual(startTime.toString());
   });
 });

@@ -15,4 +15,8 @@ export class ExtendedForecastComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getForecastId(index: number, forecast: ForecastPeriod): string {
+    return forecast.startTime.toString();
+  }
+
 }
