@@ -14,11 +14,13 @@ const FORECAST_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 Minutes
 })
 export class WeatherService {
 
-  private _gridSubject: Observable<GridPointCoordinates>;
-  private _forecastSubject: Observable<ForecastProperties>;
+  private _grid$Cache: Map<string, Observable<GridPointCoordinates>>;
+  private _forecast$Cache: Map<string, Observable<ForecastProperties>>;
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {
     console.log('init service ' + this);
+    this._grid$Cache = new Map<string, Observable<GridPointCoordinates>>();
+    this._forecast$Cache = new Map<string, Observable<ForecastProperties>>();
   }
 
   // typical weather forecast retrieval flow
@@ -28,34 +30,33 @@ export class WeatherService {
   // 4. Fetch weather forecast
 
   getGrid(latitude: number, longitude: number, forceReload?: boolean): Observable<GridPointCoordinates> {
-    // const coordinateString = latitude + ',' + longitude;
+    const coordinateString = latitude + ',' + longitude;
     // check cache
-    if (!this._gridSubject || forceReload) {
-      this._gridSubject = this._fetchGrid(latitude, longitude).pipe(
+    if (!this._grid$Cache.has(coordinateString) || forceReload) {
+      this._grid$Cache.set(coordinateString, this._fetchGrid(coordinateString).pipe(
         shareReplay(1)
-      );
+      ));
     }
-    return this._gridSubject;
-
+    return this._grid$Cache.get(coordinateString);
   }
 
-  private _fetchGrid(latitude: number, longitude: number): Observable<GridPointCoordinates> {
-    const coordinateString = latitude + ',' + longitude;
-    return this.http.get<GridPointCoordinates>(`${GRIDPOINT_ENDPOINT}/${coordinateString}`).pipe(
+  private _fetchGrid(coordinates: string): Observable<GridPointCoordinates> {
+    return this.http.get<GridPointCoordinates>(`${GRIDPOINT_ENDPOINT}/${coordinates}`).pipe(
       catchError(err => this.handleError(err))
     );
   }
 
   getWeatherReport(grid: GridPointCoordinates, forceReload?: boolean): Observable<ForecastProperties> {
     // cancel the http request once we get an answer
-    if (!this._forecastSubject || forceReload) {
-      this._forecastSubject = this._fetchWeatherReport(grid).pipe(
+    const gridString = `${grid.properties.gridId}:${grid.properties.gridX}:${grid.properties.gridY}`;
+    if (!this._forecast$Cache.has(gridString) || forceReload) {
+      this._forecast$Cache.set(gridString, this._fetchWeatherReport(grid).pipe(
         repeatWhen( () => interval(FORECAST_REFRESH_INTERVAL)),
         shareReplay(1)
-      );
+      ));
     }
 
-    return this._forecastSubject;
+    return this._forecast$Cache.get(gridString);
   }
 
   private _fetchWeatherReport(grid: GridPointCoordinates): Observable<ForecastProperties> {
