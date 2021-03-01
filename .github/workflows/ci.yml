@@ -20,9 +20,9 @@ jobs:
             - name: Install dependencies
               run: npm install
             - name: Build
-              run: npm build:ci
+              run: npm run-script build:ci
             - name: Test
-              run: npm test:ci
+              run: npm run-script test:ci
             - name: Lint Code Base
               uses: github/super-linter@v3
               env:
