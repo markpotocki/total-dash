@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 @Component({
   selector: 'app-dashboard-area-chart',
   templateUrl: './dashboard-area-chart.component.html',
-  styleUrls: ['./dashboard-area-chart.component.css']
+  styleUrls: ['./dashboard-area-chart.component.scss']
 })
 export class DashboardAreaChartComponent implements OnInit {
 

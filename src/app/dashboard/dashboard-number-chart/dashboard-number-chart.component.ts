@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'app-dashboard-number-chart',
   templateUrl: './dashboard-number-chart.component.html',
-  styleUrls: ['./dashboard-number-chart.component.css']
+  styleUrls: ['./dashboard-number-chart.component.scss']
 })
 export class DashboardNumberChartComponent implements OnInit {
 

@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
 
 const routes: Routes = [
   {path: '', component: SettingsComponent}
@@ -17,18 +18,19 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [SettingsComponent],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatCardModule,
-    RouterModule.forChild(routes),
-    MatIconModule,
-    MatButtonModule,
-    MatOptionModule,
-    MatSelectModule
-  ]
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatCardModule,
+        RouterModule.forChild(routes),
+        MatIconModule,
+        MatButtonModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatListModule
+    ]
 })
 export class SettingsModule {
 }

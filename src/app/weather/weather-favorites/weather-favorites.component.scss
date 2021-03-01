@@ -1,0 +1,10 @@
+mat-toolbar {
+  overflow-x: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+}
+
+mat-toolbar::-webkit-scrollbar {
+  display: none;
+}
