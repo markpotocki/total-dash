@@ -9,9 +9,9 @@ describe('ExtendedForecastComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExtendedForecastComponent ]
+      declarations: [ExtendedForecastComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

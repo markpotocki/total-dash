@@ -1,4 +1,4 @@
-import {FavoriteLocation, GridPointCoordinates} from '../../services/weather/types';
+import {GridPointCoordinates} from '../../services/weather/types';
 
 export const THEMES = [
   'Light',

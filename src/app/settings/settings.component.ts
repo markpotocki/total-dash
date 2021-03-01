@@ -23,7 +23,11 @@ export class SettingsComponent implements OnInit {
     private settingsService: SettingsService,
     private weatherService: WeatherService,
     private snackbar: MatSnackBar
-    ) {
+  ) {
+  }
+
+  get favorites(): GridPointCoordinates[] {
+    return this.settings.favoriteWeatherLocations;
   }
 
   ngOnInit(): void {
@@ -35,13 +39,13 @@ export class SettingsComponent implements OnInit {
       switchMap(coords => this.weatherService.getGrid(coords.fields.latitude, coords.fields.longitude)),
       take(1)
     ).subscribe(resp => {
-      this.settings.favoriteWeatherLocations = this.settings.favoriteWeatherLocations.concat(resp);
-      // save on the add
-      this.submit();
-      this.snackbar.open(resp.properties.relativeLocation.properties.city + ' added to favorites.', 'Dismiss', {
-        duration: SNACKBAR_DURATION
-      });
-    }
+        this.settings.favoriteWeatherLocations = this.settings.favoriteWeatherLocations.concat(resp);
+        // save on the add
+        this.submit();
+        this.snackbar.open(resp.properties.relativeLocation.properties.city + ' added to favorites.', 'Dismiss', {
+          duration: SNACKBAR_DURATION
+        });
+      }
     );
   }
 
@@ -62,10 +66,6 @@ export class SettingsComponent implements OnInit {
 
   getClassFromTheme(theme: string): string {
     return theme.toLowerCase().replace(' ', '-').concat('-theme');
-  }
-
-  get favorites(): GridPointCoordinates[] {
-    return this.settings.favoriteWeatherLocations;
   }
 
 }

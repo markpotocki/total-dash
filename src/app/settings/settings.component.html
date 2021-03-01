@@ -27,13 +27,13 @@
             <mat-form-field appearance="outline">
               <mat-label>Weather Favorites</mat-label>
 
-                <input
-                       [ngModelOptions]="{standalone: true}"
-                       type="text"
-                       [(ngModel)]="newZip" />
+              <input
+                [(ngModel)]="newZip"
+                [ngModelOptions]="{standalone: true}"
+                type="text"/>
             </mat-form-field>
 
-            <button mat-button (click)="addFavorite()">Add</button>
+            <button (click)="addFavorite()" mat-button>Add</button>
             <!-- Favorite weather locations -->
           </div>
 
