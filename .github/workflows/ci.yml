@@ -20,9 +20,9 @@ jobs:
             - name: Install dependencies
               run: npm install
             - name: Build
-              run: npm build --prod
+              run: npm build:ci
             - name: Test
-              run: npm test --browsers=ChromeHeadless --watch=false --code-coverage
+              run: npm test:ci
             - name: Lint Code Base
               uses: github/super-linter@v3
               env:
