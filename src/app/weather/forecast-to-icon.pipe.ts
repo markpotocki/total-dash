@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 const forecastToIconDictionary = {
   sunny: 'fore_sunny',
@@ -22,7 +22,7 @@ export class ForecastToIconPipe implements PipeTransform {
       .split('then') // two part forecasts have a then separating
       .map(forecastArray => forecastArray.split(' ')) // split the strings to find our icon keys
       .map(forecastArray => forecastArray.filter(val => Object.keys(forecastToIconDictionary).includes(val))) // drop anything unmappable
-      .reduce( (prev, curr) => prev.concat(...curr))
+      .reduce((prev, curr) => prev.concat(...curr))
       .map(forecast => forecastToIconDictionary[forecast]);
   }
 

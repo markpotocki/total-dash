@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
-import {interval, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, repeatWhen, retry, shareReplay, switchMap, take} from 'rxjs/operators';
+import {catchError, map, retry, shareReplay, switchMap, take} from 'rxjs/operators';
 import {ForecastProperties, GridPointCoordinates, LocationRecord} from './types';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {GeolocationService} from '@ng-web-apis/geolocation';
 
 const GRIDPOINT_ENDPOINT = 'https://api.weather.gov/points';
 const LATLONG_ENDPOINT = 'https://api.weather.gov/gridpoints';
-const FORECAST_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 Minutes
-const MAX_FAVORITES = 5;
 export const ZIP_API_URL = 'https://public.opendatasoft.com/api/records/1.0/search/';
 const DATASET_ID = 'us-zip-code-latitude-and-longitude';
 
@@ -59,12 +57,6 @@ export class WeatherService {
     return this._grid$Cache.get(coordinateString);
   }
 
-  private _fetchGrid(coordinates: string): Observable<GridPointCoordinates> {
-    return this.http.get<GridPointCoordinates>(`${GRIDPOINT_ENDPOINT}/${coordinates}`).pipe(
-      catchError(err => this.handleError(err))
-    );
-  }
-
   getWeatherReport(grid: GridPointCoordinates, forceReload?: boolean): Observable<ForecastProperties> {
     // cancel the http request once we get an answer
     const gridString = `${grid.properties.gridId}:${grid.properties.gridX}:${grid.properties.gridY}`;
@@ -79,16 +71,6 @@ export class WeatherService {
     return this._forecast$Cache.get(gridString);
   }
 
-  private _fetchWeatherReport(grid: GridPointCoordinates): Observable<ForecastProperties> {
-    return this.http.get<any>(
-      `${LATLONG_ENDPOINT}/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`
-    ).pipe(
-      map(gridPoint => gridPoint.properties),
-      retry(1),
-      catchError(err => this.handleError(err))
-    );
-  }
-
   getCoordinates(zip: string): Observable<LocationRecord> {
     const params = {
       dataset: DATASET_ID,
@@ -99,6 +81,22 @@ export class WeatherService {
     }).pipe(
       map(response => response.records),
       map(array => array[0])
+    );
+  }
+
+  private _fetchGrid(coordinates: string): Observable<GridPointCoordinates> {
+    return this.http.get<GridPointCoordinates>(`${GRIDPOINT_ENDPOINT}/${coordinates}`).pipe(
+      catchError(err => this.handleError(err))
+    );
+  }
+
+  private _fetchWeatherReport(grid: GridPointCoordinates): Observable<ForecastProperties> {
+    return this.http.get<any>(
+      `${LATLONG_ENDPOINT}/${grid.properties.gridId}/${grid.properties.gridX},${grid.properties.gridY}/forecast`
+    ).pipe(
+      map(gridPoint => gridPoint.properties),
+      retry(1),
+      catchError(err => this.handleError(err))
     );
   }
 

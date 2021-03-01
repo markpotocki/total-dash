@@ -12,7 +12,7 @@ import {SharedModule} from '../shared/shared.module';
 import {WeatherFavoritesComponent} from './weather-favorites/weather-favorites.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import { ForecastToIconPipe } from './forecast-to-icon.pipe';
+import {ForecastToIconPipe} from './forecast-to-icon.pipe';
 
 const ROUTES: Routes = [
   {path: '', component: WeatherComponent}
