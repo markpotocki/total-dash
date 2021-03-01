@@ -8,7 +8,7 @@
 # We have attempted to detect the languages in your repository. Please check
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
-#
+# -
 # Retrieved on 03/01/2021 from https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml
 name: "CodeQL"
 
@@ -19,7 +19,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ $default-branch ]
   schedule:
-    - cron: $cron-weekly
+    - cron: "0 0 * * 0"
 
 jobs:
   analyze:
