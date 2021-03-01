@@ -14,8 +14,28 @@
             </mat-select>
           </mat-form-field>
 
-          <!-- Favorite stock symbols [show up in stocks top dashboard limit of 4] -->
+          <!-- weather favorites -->
+          <div class="bulk-group">
+            <mat-list>
+              <mat-list-item *ngFor="let favorite of favorites">
+                <span>{{ favorite.properties.relativeLocation.properties.city + ', ' + favorite.properties.relativeLocation.properties.state }}</span>
+                <span class="spacer"></span>
+                <mat-icon (click)="removeFavorite(getGridId(favorite))">cancel</mat-icon>
+              </mat-list-item>
+            </mat-list>
 
+            <mat-form-field appearance="outline">
+              <mat-label>Weather Favorites</mat-label>
+
+                <input
+                       [ngModelOptions]="{standalone: true}"
+                       type="text"
+                       [(ngModel)]="newZip" />
+            </mat-form-field>
+
+            <button mat-button (click)="addFavorite()">Add</button>
+            <!-- Favorite weather locations -->
+          </div>
 
           <div class="submit-container">
             <button [disabled]="!settingsForm.form.valid" color="accent" mat-stroked-button>

@@ -1,9 +1,9 @@
 import {TestBed} from '@angular/core/testing';
 
-import {WeatherService} from './weather.service';
+import {WeatherService, ZIP_API_URL} from './weather.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {GridPointCoordinates} from '../weather/types';
+import {GridPointCoordinates} from './types';
 import {mergeMap} from 'rxjs/operators';
 
 describe('WeatherService', () => {
@@ -96,6 +96,40 @@ describe('WeatherService', () => {
 
     httpMock
       .expectNone(url);
+  });
+
+  it('should return coordinates', (done) => {
+    // input: 60625
+    // output: 41.971614, -87.70256
+    const zipCode = '60625';
+    const expectedLatitude = 41.971614;
+    const expectedLongitude = -87.70256;
+    const response: any = {
+      records: [
+        {
+          recordid: 'foo',
+          fields: {
+            longitude: expectedLongitude,
+            latitude: expectedLatitude
+          }
+        }
+      ]
+    };
+
+    const obs$ = service.getCoordinates(zipCode);
+    obs$.subscribe(
+      resp => {
+        expect(resp.fields.latitude).toBeCloseTo(expectedLatitude);
+        expect(resp.fields.longitude).toBeCloseTo(expectedLongitude);
+        done();
+      }
+    );
+
+    // controller
+    httpMock
+      .expectOne(ZIP_API_URL + '?dataset=us-zip-code-latitude-and-longitude&q=60625')
+      .flush(response);
+
   });
 
 });
