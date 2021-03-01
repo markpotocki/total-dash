@@ -1,4 +1,4 @@
-import { ForecastToIconPipe } from './forecast-to-icon.pipe';
+import {ForecastToIconPipe} from './forecast-to-icon.pipe';
 
 
 // specs

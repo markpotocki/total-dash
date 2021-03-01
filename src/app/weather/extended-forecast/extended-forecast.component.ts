@@ -10,7 +10,8 @@ export class ExtendedForecastComponent implements OnInit {
 
   @Input() forecasts: ForecastPeriod[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

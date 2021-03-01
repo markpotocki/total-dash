@@ -18,19 +18,19 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [SettingsComponent],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        MatCardModule,
-        RouterModule.forChild(routes),
-        MatIconModule,
-        MatButtonModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatListModule
-    ]
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatCardModule,
+    RouterModule.forChild(routes),
+    MatIconModule,
+    MatButtonModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatListModule
+  ]
 })
 export class SettingsModule {
 }
