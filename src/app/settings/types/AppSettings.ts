@@ -1,9 +1,12 @@
+import {FavoriteLocation, GridPointCoordinates} from '../../services/weather/types';
+
 export const THEMES = [
   'Light',
   'Dark',
   'Winter Paradise',
   'Silent Night',
-  'Christmas'
+  'Christmas',
+  'X09'
 ];
 
 export class AppSettings {
@@ -11,4 +14,11 @@ export class AppSettings {
   apiKey: string;
   theme: string;
   favoriteStocks: string[] = ['GOOG', 'T', 'MSFT', 'OHI'];
+  favoriteWeatherLocations: GridPointCoordinates[];
+
+  constructor() {
+    this.apiKey = '';
+    this.theme = 'Light';
+    this.favoriteWeatherLocations = [];
+  }
 }
