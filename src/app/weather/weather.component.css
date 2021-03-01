@@ -1,10 +1,10 @@
-.forecast-content {
+.content {
   display: flex;
   flex-wrap: wrap;
   margin: 8px;
 }
 
-.forecast-content > * {
+.content > * {
   margin: 8px;
 }
 

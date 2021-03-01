@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ForecastPeriod} from '../../services/weather/types';
+import {ForecastPeriod} from '../types';
 
 @Component({
   selector: 'app-extended-forecast',
   templateUrl: './extended-forecast.component.html',
-  styleUrls: ['./extended-forecast.component.scss']
+  styleUrls: ['./extended-forecast.component.css']
 })
 export class ExtendedForecastComponent implements OnInit {
 

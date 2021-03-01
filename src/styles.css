@@ -14,6 +14,6 @@ body {
   --content-spacing: 8px;
 }
 
-.spacer {
+spacer {
   flex-grow: 1;
 }

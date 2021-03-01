@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SettingsComponent} from './settings.component';
-import {SettingsService} from '../services/settings/settings.service';
+import {SettingsService} from '../services/settings.service';
 import {FormsModule} from '@angular/forms';
 import {THEMES} from './types/AppSettings';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';

@@ -80,18 +80,6 @@ $christmas-theme: mat-light-theme((
   )
 ));
 
-// Theme: X09
-$x09-primary: mat-palette($mat-yellow, 500);
-$x09-accent: mat-palette($mat-grey, 900);
-$x09-warn: mat-palette($mat-deep-orange);
-$x09-theme: mat-light-theme((
-  color: (
-    primary: $x09-primary,
-    accent: $x09-accent,
-    warn: $x09-warn
-  )
-));
-
 .dark-theme {
   @include angular-material-color($dark-theme);
 }
@@ -106,9 +94,5 @@ $x09-theme: mat-light-theme((
 
 .christmas-theme {
   @include angular-material-color($christmas-theme);
-}
-
-.x09-theme {
-  @include angular-material-color($x09-theme)
 }
 

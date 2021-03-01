@@ -1,66 +1,63 @@
-<div class="content">
-  <app-weather-favorites></app-weather-favorites>
-  <div class="forecast-content">
 
-    <div class="forecast">
+
+<div class="content">
+  <div class="forecast">
+    <mat-card>
+      <mat-card-content>
+        <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+        <app-weather-forecast
+          *ngIf="!loading"
+          [title]="location"
+          [subtitle]="weather?.periods[0].shortForecast"
+          [details]="weather?.periods[0].detailedForecast">
+          <visual><img [alt]="weather?.periods[0].shortForecast" [src]="weather?.periods[0].icon" /></visual>
+          <indicator>
+            <strong>{{ weather?.periods[0].temperature }} {{ '&deg;' + weather?.periods[0].temperatureUnit }}</strong>
+          </indicator>
+        </app-weather-forecast>
+      </mat-card-content>
+    </mat-card>
+  </div><!--/forecast-->
+  <div class="extra-info">
+    <div class="wind">
       <mat-card>
         <mat-card-content>
           <app-loading-spinner *ngIf="loading"></app-loading-spinner>
           <app-weather-forecast
             *ngIf="!loading"
-            [title]="location"
-            [subtitle]="weather?.periods[0].shortForecast"
-            [details]="weather?.periods[0].detailedForecast">
-            <visual><img [alt]="weather?.periods[0].shortForecast" [src]="weather?.periods[0].icon" /></visual>
+            [title]="weather?.periods[0].windDirection"
+            [subtitle]="weather?.periods[0].windSpeed">
             <indicator>
-              <strong>{{ weather?.periods[0].temperature }} {{ '&deg;' + weather?.periods[0].temperatureUnit }}</strong>
+              <mat-icon>{{ weather?.periods[0].windDirection | windDirectionToIcon }}</mat-icon>
             </indicator>
           </app-weather-forecast>
         </mat-card-content>
       </mat-card>
-    </div><!--/forecast-->
-    <div class="extra-info">
-      <div class="wind">
-        <mat-card>
-          <mat-card-content>
-            <app-loading-spinner *ngIf="loading"></app-loading-spinner>
-            <app-weather-forecast
-              *ngIf="!loading"
-              [title]="weather?.periods[0].windDirection"
-              [subtitle]="weather?.periods[0].windSpeed">
-              <indicator>
-                <mat-icon>{{ weather?.periods[0].windDirection | windDirectionToIcon }}</mat-icon>
-              </indicator>
-            </app-weather-forecast>
-          </mat-card-content>
-        </mat-card>
-      </div><!--/wind-->
-      <div class="next-forecast">
-        <mat-card>
-          <mat-card-content>
-            <app-loading-spinner *ngIf="loading"></app-loading-spinner>
-            <app-weather-forecast
-              *ngIf="!loading"
-              [title]="weather?.periods[1].name"
-              [subtitle]="weather?.periods[1].shortForecast">
-              <indicator>{{ weather?.periods[1].temperature + ' &deg;' + weather?.periods[1].temperatureUnit }}</indicator>
-            </app-weather-forecast>
-          </mat-card-content>
-        </mat-card>
-      </div><!--/next-forecast-->
-    </div><!--/extra-info-->
-    <div class="extended-forecast">
+    </div><!--/wind-->
+    <div class="next-forecast">
       <mat-card>
-        <mat-card-title>Extended Forecast</mat-card-title>
         <mat-card-content>
           <app-loading-spinner *ngIf="loading"></app-loading-spinner>
-          <app-extended-forecast
+          <app-weather-forecast
             *ngIf="!loading"
-            [forecasts]="weather?.periods.slice(2)">
-          </app-extended-forecast>
+            [title]="weather?.periods[1].name"
+            [subtitle]="weather?.periods[1].shortForecast">
+            <indicator>{{ weather?.periods[1].temperature + ' &deg;' + weather?.periods[1].temperatureUnit }}</indicator>
+          </app-weather-forecast>
         </mat-card-content>
       </mat-card>
-    </div><!--/extended-forecast-->
-  </div> <!--/forecast-content-->
+    </div><!--/next-forecast-->
+  </div><!--/extra-info-->
+  <div class="extended-forecast">
+    <mat-card>
+      <mat-card-title>Extended Forecast</mat-card-title>
+      <mat-card-content>
+        <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+        <app-extended-forecast
+          *ngIf="!loading"
+          [forecasts]="weather?.periods.slice(2)">
+        </app-extended-forecast>
+      </mat-card-content>
+    </mat-card>
+  </div><!--/extended-forecast-->
 </div> <!--/content-->
-

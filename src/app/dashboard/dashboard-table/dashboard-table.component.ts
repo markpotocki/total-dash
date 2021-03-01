@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ResponsiveService} from '../../services/responsive/responsive.service';
+import {ResponsiveService} from '../../services/responsive.service';
 import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-table',
   templateUrl: './dashboard-table.component.html',
-  styleUrls: ['./dashboard-table.component.scss']
+  styleUrls: ['./dashboard-table.component.css']
 })
 export class DashboardTableComponent implements OnInit {
 

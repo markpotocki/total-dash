@@ -4,9 +4,7 @@
   </button>
   <span>TotalDash</span>
   <span class="spacer"></span>
-  <!--
   <span class="weather"><ng-container *ngIf="!(isMobile$ | async)">{{location}}</ng-container>{{temperature}}</span>
-  -->
 </mat-toolbar>
 
 <mat-sidenav-container fullscreen>
@@ -16,7 +14,7 @@
 
     <mat-nav-list>
       <a *ngFor="let navItem of navItems" [href]="navItem.url" mat-list-item routerLinkActive="link-active">
-        <mat-icon color="accent" matListIcon>{{ navItem.icon }}</mat-icon>
+        <mat-icon matListIcon>{{ navItem.icon }}</mat-icon>
         {{ navItem.text }}
       </a>
     </mat-nav-list>
@@ -24,9 +22,9 @@
     <span class="spacer"></span>
 
     <mat-nav-list>
-      <a *ngFor="let navItem of bottomNavItems" [routerLink]="navItem.url" mat-list-item
+      <a *ngFor="let navItem of bottomNavItems" [href]="navItem.url" [routerLink]="navItem.url" mat-list-item
          routerLinkActive="link-active">
-        <mat-icon color="accent" matListIcon>{{ navItem.icon }}</mat-icon>
+        <mat-icon matListIcon>{{ navItem.icon }}</mat-icon>
         {{ navItem.text }}
       </a>
     </mat-nav-list>

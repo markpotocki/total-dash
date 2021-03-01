@@ -1,4 +1,4 @@
-import {WindDirectionToIconPipe} from './wind-direction-to-icon.pipe';
+import { WindDirectionToIconPipe } from './wind-direction-to-icon.pipe';
 
 describe('WindDirectionToIconPipe', () => {
   it('create an instance', () => {

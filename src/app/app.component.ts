@@ -1,13 +1,16 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
-import {ResponsiveService} from './services/responsive/responsive.service';
+import {ResponsiveService} from './services/responsive.service';
 import {Observable, Subscription} from 'rxjs';
-import {SettingsService} from './services/settings/settings.service';
+import {SettingsService} from './services/settings.service';
 import {AppSettings} from './settings/types/AppSettings';
+import {WeatherService} from './services/weather.service';
+import {GeolocationService} from '@ng-web-apis/geolocation';
+import {map, switchMap, take, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'total-dashboard';
@@ -40,6 +43,8 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private responsiveService: ResponsiveService,
     private settingsService: SettingsService,
+    private weatherService: WeatherService,
+    private readonly geolocation: GeolocationService,
   ) {
   }
 
@@ -54,11 +59,24 @@ export class AppComponent implements OnInit, OnDestroy {
         this.theme = settings.theme;
       }
     );
-    // this._loadWeather();
+    this._loadWeather();
   }
 
   ngOnDestroy(): void {
     this._weatherSubscription.unsubscribe();
+  }
+
+  private _loadWeather(): void {
+    this._weatherSubscription = this.geolocation.pipe(
+      take(1),
+      switchMap(position => this.weatherService.getGrid(position.coords.latitude, position.coords.longitude)),
+      tap(grid => this.location = grid.properties.relativeLocation.properties.city),
+      switchMap(grid => this.weatherService.getWeatherReport(grid)),
+      map(weatherReport => weatherReport.periods),
+      map(weatherPeriods => weatherPeriods[0])
+    ).subscribe(
+      currentWeather => this.temperature = currentWeather.temperature + ' &#176;' + currentWeather.temperatureUnit
+    );
   }
 
 }

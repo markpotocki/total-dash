@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {AppSettings} from '../../settings/types/AppSettings';
+import {AppSettings} from '../settings/types/AppSettings';
 
 const STORAGE_KEY = 'settings-total-dash';
 

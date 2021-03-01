@@ -41,19 +41,3 @@ export class ForecastPeriod {
   detailedForecast: string;
 }
 
-
-export class LocationRecord {
-  recordid: string;
-  fields: {
-    longitude: number,
-    latitude: number
-  };
-}
-
-export class FavoriteLocation {
-  location: string;
-  temperature: number;
-  temperatureUnit: string;
-  icon: string;
-}
-

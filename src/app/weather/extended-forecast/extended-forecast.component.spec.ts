@@ -1,7 +1,7 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ExtendedForecastComponent} from './extended-forecast.component';
-import {ForecastPeriod} from '../../services/weather/types';
+import { ExtendedForecastComponent } from './extended-forecast.component';
+import {ForecastPeriod} from '../types';
 
 describe('ExtendedForecastComponent', () => {
   let component: ExtendedForecastComponent;
